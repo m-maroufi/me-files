@@ -1,8 +1,98 @@
 @import "tailwindcss";
+@theme {
+  /* رنگ‌های اصلی - extend کردن defaults */
+  --color-primary-50: oklch(95% 0.02 210); /* #E6F7FD */
+  --color-primary-100: oklch(92% 0.03 210); /* #B3E5FC */
+  --color-primary-200: oklch(88% 0.04 210); /* #80D4FA */
+  --color-primary-300: oklch(80% 0.1 210); /* #4FC3F7 - اصلی */
+  --color-primary-400: oklch(75% 0.12 210); /* #29B6F6 */
+  --color-primary-500: oklch(65% 0.15 210); /* #03A9F4 */
+  --color-primary-600: oklch(55% 0.18 210); /* #0288D1 */
+  --color-primary-700: oklch(45% 0.2 210); /* #0277BD */
+  --color-primary-800: oklch(35% 0.22 210); /* #01579B */
+  --color-primary-900: oklch(25% 0.24 210); /* #013F7A */
 
+  --color-secondary-50: oklch(98% 0.01 270); /* #F3E5FF */
+  --color-secondary-100: oklch(95% 0.02 270); /* #D1B3FF */
+  --color-secondary-200: oklch(90% 0.05 270); /* #B388FF - ثانویه */
+  --color-secondary-300: oklch(85% 0.08 270); /* #9668FF */
+  --color-secondary-400: oklch(75% 0.1 270); /* #7A47FF */
+  --color-secondary-500: oklch(60% 0.15 270); /* #5E26FF */
+  --color-secondary-600: oklch(50% 0.18 270); /* #4D1FD1 */
+  --color-secondary-700: oklch(40% 0.2 270); /* #3D1AA3 */
+  --color-secondary-800: oklch(30% 0.22 270); /* #2C1475 */
+  --color-secondary-900: oklch(20% 0.24 270); /* #1C0E4A */
+
+  --color-accent-50: oklch(98% 0.02 15); /* #FFE6DE */
+  --color-accent-100: oklch(95% 0.03 15); /* #FFBCAD */
+  --color-accent-200: oklch(90% 0.08 15); /* #FF8A65 - متضاد */
+  --color-accent-300: oklch(85% 0.12 15); /* #FF6833 */
+  --color-accent-400: oklch(75% 0.15 15); /* #FF4500 */
+  --color-accent-500: oklch(65% 0.18 15); /* #E63B00 */
+  --color-accent-600: oklch(55% 0.2 15); /* #B82E00 */
+  --color-accent-700: oklch(45% 0.22 15); /* #892200 */
+  --color-accent-800: oklch(35% 0.24 15); /* #5B1600 */
+  --color-accent-900: oklch(25% 0.26 15); /* #2C0B00 */
+
+  --color-neutral-50: oklch(98% 0.005 200); /* #ECEFF1 */
+  --color-neutral-100: oklch(95% 0.01 200); /* #CFD8DC */
+  --color-neutral-200: oklch(92% 0.015 200); /* #B0BEC5 */
+  --color-neutral-300: oklch(85% 0.03 200); /* #90A4AE - مکمل */
+  --color-neutral-400: oklch(80% 0.04 200); /* #78909C */
+  --color-neutral-500: oklch(70% 0.05 200); /* #607D8B */
+  --color-neutral-600: oklch(60% 0.06 200); /* #546E7A */
+  --color-neutral-700: oklch(50% 0.07 200); /* #455A64 */
+  --color-neutral-800: oklch(40% 0.08 200); /* #37474F - متن */
+  --color-neutral-900: oklch(30% 0.09 200); /* #263238 */
+
+  --color-background-50: oklch(100% 0 210); /* #FFFFFF */
+  --color-background-100: oklch(99% 0.005 210); /* #FAFBFC */
+  --color-background-200: oklch(97% 0.01 210); /* #F5F7FA - پس‌زمینه */
+  --color-background-300: oklch(95% 0.015 210); /* #ECEFF1 */
+  --color-background-400: oklch(92% 0.02 210); /* #E0E4E8 */
+
+  /* سایه‌ها - extend کردن defaults */
+  --shadow-sm: 0 1px 2px 0 rgb(from neutral-800 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(from neutral-800 / 0.1),
+    0 2px 4px -2px rgb(from neutral-800 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(from neutral-800 / 0.1),
+    0 4px 6px -4px rgb(from neutral-800 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(from neutral-800 / 0.1),
+    0 8px 10px -6px rgb(from neutral-800 / 0.1);
+  --shadow-glow: 0 0 10px rgb(from primary-300 / 0.3);
+
+  --shadow-inset-sm: inset 0 1px 2px 0 rgb(from neutral-800 / 0.05);
+  --shadow-drop-glow: 0 4px 4px rgb(from primary-300 / 0.15);
+
+  /* border-radius اضافی */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  /* transitionها */
+  --transition-shadow: box-shadow 0.2s ease-in-out;
+  --transition-colors: background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+  /* انیمیشن ساده برای آپلود (اختیاری) */
+  --animate-upload: upload-progress 0.5s ease-out;
+  @keyframes upload-progress {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* استایل‌های اضافی برای body و کلاس‌های سفارشی */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --text-primary: var(--color-neutral-800);
+  --bg-primary: var(--color-background-200);
 }
 
 @theme inline {
@@ -10,17 +100,30 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-vazir: var(--vazir-font);
+  --font-changa: var(--changa-font);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    direction: rtl;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    @apply font-vazir;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* hover effects سفارشی */
+.hover\:bg-primary-400:hover {
+  background-color: rgb(from primary-300 / 0.9);
+  box-shadow: var(--shadow-glow);
+  transition: var(--transition-shadow), var(--transition-colors);
+}
+
+.notification-success {
+  background-color: rgb(from secondary-200 / 0.8);
+  color: white;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  animation: var(--animate-upload);
 }

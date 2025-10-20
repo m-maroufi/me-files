@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1760940761537,
+      "tag": "0000_icy_golden_guardian",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1760941826240,
+      "tag": "0001_exotic_molten_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1760946994014,
+      "tag": "0002_conscious_ulik",
+      "breakpoints": true
+    }
+  ]
+}
