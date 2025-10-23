@@ -4,4 +4,5 @@ export interface IUploadedFile {
   fileType: string;
   url: string;
   fileKey: string;
+  fileSize: number;
 }

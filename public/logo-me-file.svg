@@ -1,0 +1,38 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- پس‌زمینه گرادیان آبی -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" /> <!-- blue-500 -->
+      <stop offset="100%" stop-color="#1E40AF" /> <!-- blue-800 -->
+    </linearGradient>
+    <linearGradient id="folderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBBF24" /> <!-- yellow-400 -->
+      <stop offset="100%" stop-color="#F59E0B" /> <!-- amber-500 -->
+    </linearGradient>
+  </defs>
+
+  <!-- پس‌زمینه -->
+  <rect width="300" height="300" fill="url(#bgGradient)" rx="60" />
+
+  <!-- پوشه باز -->
+  <g transform="translate(60, 70)">
+    <!-- بدنه پوشه -->
+    <path d="M 0 40 Q 0 30, 10 30 H 140 Q 150 30, 150 40 V 140 Q 150 150, 140 150 H 10 Q 0 150, 0 140 Z" 
+          fill="url(#folderGradient)" stroke="#1E293B" stroke-width="3"/>
+    <!-- لبه بالایی پوشه -->
+    <path d="M 30 30 H 110 Q 120 30, 120 40 H 40 Q 30 30, 30 30 Z" 
+          fill="#FCD34D" stroke="#1E293B" stroke-width="3"/>
+    <!-- سوراخ پوشه -->
+    <circle cx="75" cy="85" r="8" fill="#1E293B" opacity="0.3"/>
+  </g>
+
+  <!-- متن "می فایل" -->
+  <text dir="rtl" text-anchor="middle" x="150" y="220" 
+        font-family="Vazirmatn, Tahoma, sans-serif" font-weight="700" 
+        font-size="48" fill="white" letter-spacing="2">
+    می فایل
+  </text>
+
+  <!-- نقطه نارنجی (اکسنت) -->
+  <circle cx="105" cy="195" r="8" fill="#F59E0B"/>
+</svg>

@@ -26,6 +26,9 @@ const changa = Changa({
 export const metadata: Metadata = {
   title: "آپلودر فایل",
   description: "آپلودر فایل میفایل",
+  icons: {
+    icon: "/logo-me-file.svg",
+  },
 };
 
 export default function RootLayout({
@@ -35,6 +38,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="shortcut icon"
+          href="/favicon-me-file.ico"
+          type="image/svg+xml"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${changa.variable} ${vazir.variable}  ${geistMono.variable} antialiased`}
       >

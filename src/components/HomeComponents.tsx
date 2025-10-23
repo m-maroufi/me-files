@@ -77,7 +77,7 @@ export default function HomeComponents() {
             می فایل 🌟
           </motion.div>
           <Link
-            href="/login"
+            href="/sign-in"
             className="bg-white text-blue-600 px-3 py-1.5 rounded-md font-bold text-sm sm:text-base hover:bg-blue-100 transition duration-300"
           >
             ورود
@@ -129,7 +129,7 @@ export default function HomeComponents() {
             }}
           >
             <Link
-              href="/get-started"
+              href="/dashboard"
               className="inline-block bg-gradient-to-r from-yellow-300 to-orange-400 text-white px-6 py-3 rounded-xl font-bold text-sm sm:text-lg shadow-lg hover:shadow-xl transition duration-300"
             >
               شروع کنید

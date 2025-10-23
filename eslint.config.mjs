@@ -26,7 +26,7 @@ const eslintConfig = [
       "react/react-in-jsx-scope": "off",
       "tailwindcss/no-custom-classname": "off",
       "@typescript-eslint/no-unused-vars": [
-        "error", // or "error"
+        "warn", // or "error"
         {
           argsIgnorePattern: "^_",
           varsIgnorePattern: "^_",
@@ -34,6 +34,7 @@ const eslintConfig = [
         },
       ],
       "unicorn/prevent-abbreviations": "off",
+      "@typescript-eslint/no-explicit-any": "off",
     },
   },
 ];

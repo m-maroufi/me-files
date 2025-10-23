@@ -8,7 +8,7 @@ import { Copy, Download, File, Loader2, Trash2, Upload } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Uploader = () => {
@@ -19,7 +19,7 @@ const Uploader = () => {
   const [fileIdToDelete, setFileIdToDelete] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const { data: uploadedFiles, loading, refetch } = useUploads();
+  const { data: uploadedFiles, loading, refetch, count } = useUploads();
 
   const { startUpload, isUploading } = useUploadThing("mediaUploader", {
     onClientUploadComplete: async () => {
@@ -111,7 +111,6 @@ const Uploader = () => {
 
   const handleDownload = async (url: string, fileName: string) => {
     try {
-      // دانلود فایل با استفاده از fetch
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error("خطا در دریافت فایل");
@@ -120,7 +119,7 @@ const Uploader = () => {
       const downloadUrl = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = downloadUrl;
-      link.download = fileName; // استفاده از نام فایل برای دانلود
+      link.download = fileName;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -160,9 +159,8 @@ const Uploader = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+    <div className="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8 bg-blue-900/10 backdrop-blur-md rounded-2xl shadow-lg">
       {/* Toast Container for Notifications */}
-      <ToastContainer />
 
       {/* Dropzone */}
       <motion.div
@@ -172,14 +170,14 @@ const Uploader = () => {
       >
         <div
           {...getRootProps()}
-          className={`relative w-full border-2 border-dashed rounded-2xl p-6 sm:p-8 transition-all duration-300 ${
+          className={`relative w-full border-2 border-dashed rounded-xl p-6 sm:p-8 transition-all duration-300 ${
             isDragActive
-              ? "border-indigo-600 bg-indigo-100/50"
-              : "border-indigo-300 bg-indigo-50/30"
-          } hover:bg-indigo-100/70 flex flex-col items-center justify-center min-h-[200px] sm:min-h-[250px]`}
+              ? "border-yellow-300 bg-blue-100/20"
+              : "border-blue-300 bg-blue-50/10"
+          } hover:bg-blue-100/30 flex flex-col items-center justify-center min-h-[200px] sm:min-h-[250px]`}
         >
           <input {...getInputProps()} />
-          <Upload className="w-10 h-10 text-indigo-500 mb-4" />
+          <Upload className="w-10 h-10 text-yellow-300 mb-4" />
           <AnimatePresence>
             {preview ? (
               <motion.div
@@ -194,25 +192,24 @@ const Uploader = () => {
                     height={200}
                     src={preview}
                     alt="Preview"
-                    className="max-h-48 rounded-lg shadow-md object-cover"
+                    className="max-h-48 rounded-lg shadow-md object-cover border-2 border-blue-200"
                   />
                 ) : (
                   <video
                     src={preview}
                     controls
-                    className="max-h-48 rounded-lg shadow-md"
+                    className="max-h-48 rounded-lg shadow-md border-2 border-blue-200"
                   />
                 )}
-                <p className="text-sm text-gray-700 font-medium">
+                <p className="text-sm text-white font-medium truncate max-w-full">
                   {file?.name}
                 </p>
               </motion.div>
             ) : (
-              <p className="text-sm sm:text-base text-gray-600 text-center">
+              <p className="text-sm sm:text-base text-blue-100 text-center font-vazir">
                 تصویر یا ویدیو خود را بکشید و رها کنید یا کلیک کنید
                 <br />
-                <span className="text-red-400 font-light text-sm">
-                  {" "}
+                <span className="text-yellow-300 font-light text-sm">
                   تصاویر حداکثر 4 مگابایت و ویدئو حداکثر 1 گیگابایت
                 </span>
               </p>
@@ -231,10 +228,10 @@ const Uploader = () => {
           <button
             onClick={() => startUpload([file])}
             disabled={isUploading}
-            className={`flex items-center gap-2 px-6 py-2 rounded-lg text-white font-medium transition-all duration-300 transform hover:scale-105 ${
+            className={`flex items-center gap-2 px-6 py-2 rounded-lg text-white font-medium font-vazir transition-all duration-300 transform hover:scale-105 ${
               isUploading
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-indigo-600 hover:bg-indigo-700"
+                ? "bg-gray-600 cursor-not-allowed"
+                : "bg-yellow-400 hover:bg-yellow-500 text-blue-800"
             }`}
           >
             <Upload className="w-5 h-5" />
@@ -243,21 +240,13 @@ const Uploader = () => {
 
           {isUploading && (
             <div className="w-full max-w-md">
-              <div className="bg-gray-200 rounded-full h-2.5 overflow-hidden">
+              <div className="bg-blue-200/50 rounded-full h-2.5 overflow-hidden">
                 <motion.div
-                  className="h-2.5 rounded-full"
+                  className="h-2.5 rounded-full bg-gradient-to-r from-yellow-300 to-orange-400"
                   animate={{ width: `${uploadProgress}%` }}
-                  style={{
-                    backgroundColor:
-                      uploadProgress < 50
-                        ? "#4f46e5"
-                        : uploadProgress < 80
-                        ? "#7c3aed"
-                        : "#10b981",
-                  }}
                 />
               </div>
-              <p className="text-sm text-gray-600 mt-2 text-center">
+              <p className="text-sm text-blue-100 mt-2 text-center font-vazir">
                 {uploadProgress}%
               </p>
             </div>
@@ -295,15 +284,15 @@ const Uploader = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-right shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-blue-900/90 backdrop-blur-md p-6 text-right shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
+                    className="text-lg font-medium text-white font-vazir"
                   >
                     حذف فایل
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-blue-200 font-vazir">
                       آیا مطمئن هستید که می‌خواهید این فایل را حذف کنید؟ این
                       عملیات قابل بازگشت نیست.
                     </p>
@@ -312,14 +301,14 @@ const Uploader = () => {
                   <div className="mt-4 flex gap-3 justify-end">
                     <button
                       type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-gray-200 px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+                      className="inline-flex justify-center rounded-md border border-blue-300 bg-blue-800/50 px-4 py-2 text-sm font-medium text-blue-100 hover:bg-blue-700/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300 font-vazir"
                       onClick={() => setIsDeleteDialogOpen(false)}
                     >
                       لغو
                     </button>
                     <button
                       type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 font-vazir"
                       onClick={confirmDelete}
                     >
                       حذف
@@ -334,7 +323,7 @@ const Uploader = () => {
 
       {/* Uploaded Files List */}
       {loading ? (
-        <p className="mt-8 text-gray-500 text-center">
+        <p className="mt-8 text-blue-100 text-center font-vazir">
           در حال بارگذاری فایل‌ها...
         </p>
       ) : (
@@ -349,7 +338,7 @@ const Uploader = () => {
             <AnimatePresence>
               {isDeleting && (
                 <motion.div
-                  className="absolute inset-0 bg-white/70 backdrop-blur-sm flex items-center justify-center z-10 rounded-lg"
+                  className="absolute inset-0 bg-blue-900/50 backdrop-blur-sm flex items-center justify-center z-10 rounded-lg"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -363,78 +352,88 @@ const Uploader = () => {
                       ease: "linear",
                     }}
                   >
-                    <Loader2 className="w-8 h-8 text-indigo-600" />
+                    <Loader2 className="w-8 h-8 text-yellow-300" />
                   </motion.div>
                 </motion.div>
               )}
             </AnimatePresence>
 
-            <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-              <File className="w-6 h-6 text-indigo-500" />
-              فایل‌های آپلود شده
+            <h3 className="text-lg sm:text-xl font-semibold text-white mb-4 flex items-center gap-2 font-vazir">
+              <File className="w-6 h-6 text-yellow-300" />
+              فایل‌های آپلودشده ( {count} )
             </h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {uploadedFiles.map((f, index) => (
-                <motion.div
+            <ul className="border border-blue-300/50 rounded-lg overflow-hidden">
+              {/* هدر جدول */}
+              <li className="grid grid-cols-12 gap-4 bg-blue-800/50 p-3 text-sm sm:text-base text-blue-100 font-medium font-vazir">
+                <span className="col-span-5 sm:col-span-4">نام فایل</span>
+                <span className="col-span-3 sm:col-span-3 text-center">
+                  نوع فایل
+                </span>
+                <span className="col-span-2 sm:col-span-2 text-center">
+                  اندازه
+                </span>
+                <span className="col-span-2 sm:col-span-3 text-center">
+                  عملیات
+                </span>
+              </li>
+              {/* ردیف‌های فایل‌ها */}
+              {uploadedFiles.map((f) => (
+                <li
                   key={f.id}
-                  className="relative bg-white rounded-lg shadow-md p-4 flex flex-col items-center group overflow-hidden transition-all duration-300 hover:shadow-lg"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  className="grid grid-cols-12 gap-4 p-3 bg-blue-900/30 hover:bg-blue-900/50 transition-colors duration-200 text-white text-sm sm:text-base font-vazir border-t border-blue-300/20"
                 >
-                  {f.fileType.startsWith("image/") ? (
-                    <Image
-                      width={100}
-                      height={100}
-                      src={f.url}
-                      alt={f.name}
-                      unoptimized
-                      className="max-h-24 rounded-md object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                  ) : (
-                    <video
-                      src={f.url}
-                      className="max-h-24 rounded-md transition-transform duration-300 group-hover:scale-105"
-                      controls
-                    />
-                  )}
-                  <p className="text-sm text-gray-600 mt-2 text-center truncate w-full">
-                    {f.name}
-                  </p>
-
-                  <div className="absolute top-2 right-2 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
+                  <div className="col-span-5 sm:col-span-4 flex items-center gap-2">
+                    {f.fileType.startsWith("image/") ? (
+                      <Image
+                        width={40}
+                        height={40}
+                        src={f.url}
+                        alt={f.name}
+                        unoptimized
+                        className="rounded-md object-cover"
+                      />
+                    ) : (
+                      <video
+                        src={f.url}
+                        className="w-10 h-10 rounded-md"
+                        muted
+                      />
+                    )}
+                    <span className="truncate">{f.name}</span>
+                  </div>
+                  <span className="col-span-3 sm:col-span-3 text-center">
+                    {f.fileType.split("/")[1].toUpperCase()}
+                  </span>
+                  <span className="col-span-2 sm:col-span-2 text-center">
+                    {(f.fileSize / 1024 / 1024).toFixed(2)} MB
+                  </span>
+                  <div className="col-span-2 sm:col-span-3 flex justify-center gap-2">
+                    <button
                       onClick={() => handleCopy(f.url)}
-                      className="bg-blue-500 text-white p-2 rounded-md shadow-sm hover:bg-blue-600 transition-colors duration-200"
+                      className="p-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-200"
                       title="کپی لینک"
                     >
                       <Copy className="w-4 h-4" />
-                    </motion.button>
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
+                    </button>
+                    <button
                       onClick={() => handleDownload(f.url, f.name)}
-                      className="bg-green-500 text-white p-2 rounded-md shadow-sm hover:bg-green-600 transition-colors duration-200"
+                      className="p-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors duration-200"
                       title="دانلود فایل"
                     >
                       <Download className="w-4 h-4" />
-                    </motion.button>
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
+                    </button>
+                    <button
                       onClick={() => openDeleteDialog(f.id)}
-                      className="bg-red-500 text-white p-2 rounded-md shadow-sm hover:bg-red-600 transition-colors duration-200"
+                      className="p-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors duration-200"
                       title="حذف فایل"
                     >
                       <Trash2 className="w-4 h-4" />
-                    </motion.button>
+                    </button>
                   </div>
-                </motion.div>
+                </li>
               ))}
-            </div>
+            </ul>
           </motion.div>
         )
       )}
