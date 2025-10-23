@@ -3,19 +3,6 @@ import type { Metadata } from "next";
 
 // متاتگ‌ها برای SEO
 export const metadata: Metadata = {
-  title: "می فایل - اپلیکیشن مدیریت فایل",
-  description:
-    "می فایل، اپلیکیشن قدرتمند برای مدیریت فایل‌های شما با سرعت و امنیت بالا",
-  keywords: ["می فایل", "مدیریت فایل", "اپلیکیشن", "فارسی"],
-  openGraph: {
-    title: "می فایل",
-    description:
-      "اپلیکیشن قدرتمند برای مدیریت فایل‌های شما با سرعت و امنیت بالا",
-    url: "https://myfile.com",
-    siteName: "می فایل",
-    locale: "fa_IR",
-    type: "website",
-  },
   twitter: {
     card: "summary_large_image",
     title: "می فایل",
