@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌤️ me-files
 
-## Getting Started
+**مدیریت و اشتراک‌گذاری آسان فایل‌ها**
 
-First, run the development server:
+[🚀 مشاهده‌ی دمو](https://me-files-chi.vercel.app/)  
+[📂 مخزن گیت‌هاب](https://github.com/m-maroufi/me-files)
+
+---
+
+## 🧠 معرفی
+
+**me-files** یک وب‌اپ مدرن و سبک برای مدیریت فایل‌هاست.  
+کاربران می‌توانند به‌راحتی با **Google** یا **GitHub** وارد شوند، فایل‌های خود را آپلود کنند، لینک دانلود دریافت کنند و هر زمان خواستند فایل‌هایشان را حذف کنند.
+
+رابط کاربری با **Next.js** ساخته شده و کاملاً **ریسپانسیو** است تا روی تمام دستگاه‌ها تجربه‌ی خوبی ارائه دهد.
+
+---
+
+## ✨ ویژگی‌ها
+
+- 🔐 **احراز هویت ایمن(better-auth)** با Google و GitHub
+- 📤 **آپلود فایل** با نمایش لیست فایل‌های آپلودشده
+- 🗑️ **قابلیت حذف فایل‌ها**
+- 🔗 **کپی آسان لینک دانلود**
+- 💎 طراحی **ریسپانسیو و مینیمال**
+- ⚙️ ساخته‌شده با **Next.js 15**
+- 📦 مدیریت پکیج‌ها با **pnpm**
+- ☁️ استفاده از **Vercel** برای دیپلوی سریع و بهینه
+
+---
+
+## 🚀 نصب و اجرا
+
+### 1. کلون کردن پروژه
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/m-maroufi/me-files.git
+cd me-files
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. نصب وابستگی‌ها
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. اجرای پروژه در حالت توسعه
 
-## Learn More
+```bash
+pnpm dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+سپس در مرورگر آدرس [http://localhost:3000](http://localhost:3000) را باز کنید.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📁 ساختار پوشه‌ها
 
-## Deploy on Vercel
+```
+me-files/
+├── public/           # فایل‌های استاتیک (تصاویر و ... )
+├── src/              # منطق اصلی برنامه و کامپوننت‌ها
+├── drizzle.config.ts # تنظیمات دیتابیس (در صورت فعال بودن)
+├── next.config.ts    # تنظیمات Next.js
+└── ...
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 💡 قابلیت‌های آینده (پیشنهاد توسعه)
+
+- 📈 افزودن محدودیت حجم یا نوع فایل
+- 🗂️ پوشه‌بندی فایل‌ها
+- 🕒 لینک‌های موقت با تاریخ انقضا
+- 📊 داشبورد آمار و گزارش آپلودها
+
+---
+
+## 🧾 مجوز
+
+این پروژه تحت مجوز **MIT License** منتشر شده است.  
+می‌توانید آزادانه از آن استفاده، ویرایش و منتشر کنید — با ذکر منبع 🙌
+
+---
+
+## 💬 تشکر
+
+از اینکه پروژه‌ی **me-files** را بررسی کردید ممنونم!  
+اگر پیشنهادی دارید یا در توسعه‌ی پروژه کمک می‌کنید، خیلی خوشحال می‌شم ❤️
+
+---
+
+🧑‍💻 ساخته شده با عشق توسط [**m-maroufi**](https://github.com/m-maroufi)
