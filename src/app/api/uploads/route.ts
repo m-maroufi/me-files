@@ -1,43 +1,59 @@
+// src/app/api/uploads/route.ts
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { files } from "@/lib/db/schema/filesTable";
 import { desc, eq } from "drizzle-orm";
-import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
-  const userId = await auth.api
-    .getSession({
-      headers: req.headers,
-    })
-    .then((session) => session?.user?.id);
-  if (!userId) {
-    return NextResponse.json(
-      {
-        success: false,
-        status: 401,
-        data: "Unauthorized",
-      },
-      { status: 401 }
-    );
-  }
   try {
+    const session = await auth.api.getSession({
+      headers: req.headers,
+    });
+
+    const userId = session?.user?.id;
+
+    if (!userId) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          status: 401,
+          data: "Unauthorized",
+        }),
+        {
+          status: 401,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+    }
+
     const uploads = await db
       .select()
       .from(files)
       .where(eq(files.userId, userId))
       .orderBy(desc(files.uploadDate));
-    const response = {
-      success: true,
-      status: 200,
-      data: uploads,
-    };
-    return NextResponse.json(response);
+
+    return new Response(
+      JSON.stringify({
+        success: true,
+        status: 200,
+        data: uploads,
+      }),
+      {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   } catch (error) {
-    const response = {
-      success: false,
-      status: 500,
-      data: error,
-    };
-    return response;
+    return new Response(
+      JSON.stringify({
+        success: false,
+        status: 500,
+        data: "Internal Server Error",
+      }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   }
 }
