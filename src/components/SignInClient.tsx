@@ -5,7 +5,6 @@ import { motion, Variants } from "framer-motion";
 import { Github, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { toast } from "react-toastify";
 
 // تعریف Variants برای صفحه ورود
 const pageVariants: Variants = {
@@ -71,12 +70,12 @@ export default function SignInClient() {
   const [loading, setLoading] = useState(false);
 
   const signIn = async (provider: "google" | "github") => {
-    if (provider === "google") {
-      toast.info("این سرویس در حال حاضر در دسترس نیست.", {
-        position: "top-right",
-      });
-      return;
-    }
+    // if (provider === "google") {
+    //   toast.info("این سرویس در حال حاضر در دسترس نیست.", {
+    //     position: "top-right",
+    //   });
+    //   return;
+    // }
     setLoading(true);
     try {
       await authClient.signIn.social({
