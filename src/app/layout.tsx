@@ -64,13 +64,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link
-          rel="shortcut icon"
-          href="/favicon-me-file.ico"
-          type="image/svg+xml"
-        />
-      </head>
       <body
         className={`${geistSans.variable} ${changa.variable} ${vazir.variable}  ${geistMono.variable} antialiased`}
       >
