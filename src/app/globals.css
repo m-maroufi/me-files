@@ -105,6 +105,14 @@
 }
 
 @layer base {
+  html,
+  body,
+  #__next {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
   body {
     direction: rtl;
     background-color: var(--bg-primary);

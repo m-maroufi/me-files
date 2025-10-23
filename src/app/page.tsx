@@ -1,18 +1,33 @@
-import Uploader from "@/components/uploader";
+import HomeComponents from "@/components/HomeComponents";
+import type { Metadata } from "next";
+
+// متاتگ‌ها برای SEO
+export const metadata: Metadata = {
+  title: "می فایل - اپلیکیشن مدیریت فایل",
+  description:
+    "می فایل، اپلیکیشن قدرتمند برای مدیریت فایل‌های شما با سرعت و امنیت بالا",
+  keywords: ["می فایل", "مدیریت فایل", "اپلیکیشن", "فارسی"],
+  openGraph: {
+    title: "می فایل",
+    description:
+      "اپلیکیشن قدرتمند برای مدیریت فایل‌های شما با سرعت و امنیت بالا",
+    url: "https://myfile.com",
+    siteName: "می فایل",
+    locale: "fa_IR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "می فایل",
+    description:
+      "اپلیکیشن قدرتمند برای مدیریت فایل‌های شما با سرعت و امنیت بالا",
+  },
+};
 
 export default function Home() {
   return (
-    <div className="container mx-auto px-7">
-      <section className="header pt-20 space-y-4">
-        <h1 className="text-center font-changa font-bold text-3xl md:text-4xl text-primary-800">
-          می فایل
-        </h1>
-        <p className="text-xl text-primary-900/60 text-center">
-          جایی برای ویدیوها و تصاویر تو! ساده آپلود کن، سریع به اشتراک بگذار،
-          همیشه در دسترس!
-        </p>
-      </section>
-      <Uploader />
+    <div className="bg-gradient-to-br from-blue-100 to-blue-300 min-h-screen flex flex-col justify-between overflow-hidden">
+      <HomeComponents />
     </div>
   );
 }
